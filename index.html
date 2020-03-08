@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -18,7 +17,7 @@
          <div class="cart">
             <div class="col-md-12 col-lg-10 mx-auto">
                <div class="cart-item">
-                  <div class="row" >
+                  <div class="row">
                      <div class="col-md-7 center-item">
                         <img src="images/product-1.png" alt="">
                         <h5>iPhone 11 128GB Black</h5>
@@ -26,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button  id ="mobileMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input  id = "inputOne" type="text" class="form-control text-center" value="1">
-                           <button id ="mobilPlus" class="btn btn-default"><i class="fas fa-plus" ></i></button>
+                           <button id="mblMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="mblAmount" type="text" class="form-control text-center" value="1">
+                           <button id="mblPlus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$<span id ="mobilePrice">1219</span></h5>
+                        <h5>$ <span id="mblPrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -44,12 +43,12 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button id="caseMinus" class="btn btn-default"><i class="fas fa-minus" ></i></button>
-                           <input id="inputTwo" type="text" class="form-control text-center" value="1">
-                           <button id ="casePlus" class="btn btn-default"><i class="fas fa-plus" ></i></button>
+                           <button id="caseMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="caseAmount" type="text" class="form-control text-center" value="1">
+                           <button id="casePlus" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
-                        <h5>$<span id="casePrice">59</span></h5>
+                        <h5>$ <span id="cPrice" >59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -62,13 +61,12 @@
                         <h5>Subtotal: </h5>
                         <h5>Tax:</h5>
                         <h5>Total:</h5>
-                        
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$ <span id ="subTotal">1278</span> </h5>
-                        <h5><span id = "tax"> 00</span></h5>
-                        <h5> $<span id ="Total">1278</span></h5>
+                        <h5>$ <span id="subtotal">1278</span></h5>
+                        <h5>$0</h5>
+                        <h5>$ <span id="total">1278</span></h5>
                      </div>
                   </div>
                </div>
@@ -80,100 +78,134 @@
       </div>
    </section>
 
-   <!--JS Code-->
+   <!--Javascript-->
    <script>
+      //Start Mobile
 
-       //Mobile
-         const mobilPlus = document.getElementById("mobilPlus");
-         mobilPlus.addEventListener("click", function(){
-         const inputOne = document.getElementById("inputOne").value++;
-         const mobilePrice = document.getElementById("mobilePrice").innerText;
-         const itemTwo = parseFloat(mobilePrice);
-         const addItemTwo = itemTwo + 1219;
+      //Mobile plus Button
+      const mplusBtn = document.getElementById("mblPlus");
+      mplusBtn.addEventListener("click",function(){
+         const mblquanti = document.getElementById("mblAmount").value;
+         const mblquantity = parseFloat(mblquanti);
+         const totalMbl = mblquantity + 1;
+         document.getElementById("mblAmount").value = totalMbl;
 
-         document.getElementById("mobilePrice").innerText = addItemTwo;
+         const moblprice = document.getElementById("mblPrice").innerText;
+         const mobilPrice = parseFloat(moblprice);
+         const totalmblPrice = mobilPrice + 1219;
+         document.getElementById("mblPrice").innerText = totalmblPrice;
 
-         const subTotal = document.getElementById("subTotal").innerText;
-         const totalOne = parseFloat(subTotal);
-         const totalValue2 = totalOne +  1219;
+         const subTotal =  document.getElementById("subtotal").innerText;
+         const sbTotal = parseFloat(subTotal);
+         const SubTotal = sbTotal+1219;
+         document.getElementById("subtotal").innerText = SubTotal;
 
-         document.getElementById("subTotal").innerText = totalValue2;
-         document.getElementById("Total").innerText = totalValue2;
-         })
+         const Total =  document.getElementById("total").innerText;
+         const ToTal = parseFloat(Total);
+         const TotaL = ToTal+1219;
+         document.getElementById("total").innerText = TotaL;
+      })
 
-         const mobileMinus = document.getElementById("mobileMinus");
-         mobileMinus.addEventListener("click", function(){
-         const inputOne = document.getElementById("inputOne")
-         if(inputOne.value <=0 && minusValue2 <=0 ){
-               inputOne.value = 0;
-               minusValue2 = 0;
+      //Mobile Minus Button
+      const mminusBtn = document.getElementById("mblMinus");
+      mminusBtn.addEventListener("click", function(){
+         const mblquanti = document.getElementById("mblAmount").value;
+         const mblquantity = parseFloat(mblquanti);
+         const totalMbl = mblquantity - 1;
+         document.getElementById("mblAmount").value = totalMbl;
+         if(mblAmount.value <= 0){
+            mblAmount.value = 0;
+         } 
+
+         const moblprice = document.getElementById("mblPrice").innerText;
+         const mobilPrice = parseFloat(moblprice);
+         const totalmblPrice = mobilPrice - 1219;
+         document.getElementById("mblPrice").innerText = totalmblPrice;  
+         if(mblPrice.innerText <= 0){
+            mblPrice.innerText = 0;
          }
-         else{
-            inputOne.value--;
-         };
-         const mobilePrice = document.getElementById("mobilePrice").innerText;
-         const itemTwo = parseFloat(mobilePrice);
-         const minusItemTwo = itemTwo - 1219;
 
-         document.getElementById("mobilePrice").innerText = minusItemTwo;
-
-         const subTotal = document.getElementById("subTotal").innerText;
-         const totalOne = parseFloat(subTotal);
-         const minusValue2 = totalOne -  1219;
-
-         document.getElementById("subTotal").innerText = minusValue2;
-         document.getElementById("Total").innerText = minusValue2;
-
-         })
-
-
-      // Case
-         const addItem = document.getElementById("casePlus");
-         addItem.addEventListener("click", function(){
-         const inputTwo = document.getElementById("inputTwo").value++;
-         const casePrice = document.getElementById("casePrice").innerText;
-         const itemOne = parseFloat(casePrice);
-         const addItemOne = itemOne + 59;
-
-       
-         document.getElementById("casePrice").innerText = addItemOne;
-
-         const subTotal = document.getElementById("subTotal").innerText;
-         const totalOne = parseFloat(subTotal);
-         const totalValue = totalOne +  59;
-
-         document.getElementById("subTotal").innerText = totalValue;
-         document.getElementById("Total").innerText = totalValue;
-
-         })  
-         const mninusItem = document.getElementById("caseMinus");
-         mninusItem.addEventListener("click", function(){
-            const inputTwo = document.getElementById("inputTwo")
-            if(inputTwo.value <=0 && minusValue <=0 ){
-            inputTwo.value = 0;
-            minusValue = 0;
+         const subTotal =  document.getElementById("subtotal").innerText;
+         const sbTotal = parseFloat(subTotal);
+         const SubTotal = sbTotal-1219;
+         document.getElementById("subtotal").innerText = SubTotal;
+         if(subtotal.innerText <= 0 || mblAmount.value <= 0){
+            subtotal.innerText = cPrice.innerText;
          }
-         else{
-            inputTwo.value--;
-         };
-            const casePrice = document.getElementById("casePrice").innerText;
-            const itemOne =  parseFloat(casePrice);
-            const minusItemOne = casePrice - 59 ;
-            
 
-            document.getElementById("casePrice").innerText = minusItemOne;
+         const Total =  document.getElementById("total").innerText;
+         const ToTal = parseFloat(Total);
+         const TotaL = ToTal-1219;
+         document.getElementById("total").innerText = TotaL;
+         if(total.innerText <= 0 || mblAmount.value <= 0){
+            total.innerText = cPrice.innerText;
+         }  
+               
+      })
+      //End Mobile
+      //Start Case
 
-            const subTotal = document.getElementById("subTotal").innerText;
-            const totalOne = parseFloat(subTotal);
-            const minusValue = totalOne - 59  ;
+      //Case plus Btn
+      const cplusBtn = document.getElementById("casePlus");
+      cplusBtn.addEventListener("click",function(){
+         const casequanti = document.getElementById("caseAmount").value;
+         const casequantity = parseFloat(casequanti);
+         const totalCase = casequantity + 1;
+         document.getElementById("caseAmount").value = totalCase;
 
-            document.getElementById("subTotal").innerText = minusValue;
-            document.getElementById("Total").innerText = minusValue;
-      
+         const caseprice = document.getElementById("cPrice").innerText;
+         const casPrice = parseFloat(caseprice);
+         const totalcasePrice = casPrice + 59;
+         document.getElementById("cPrice").innerText = totalcasePrice;
 
-         })
+         const subTotal =  document.getElementById("subtotal").innerText;
+         const sbTotal = parseFloat(subTotal);
+         const SubTotal = sbTotal+59;
+         document.getElementById("subtotal").innerText = SubTotal;
 
-    </script>
+         const Total =  document.getElementById("total").innerText;
+         const ToTal = parseFloat(Total);
+         const TotaL = ToTal+59;
+         document.getElementById("total").innerText = TotaL;
+
+      })
+
+      //Case minus Btn
+      const cminusBtn = document.getElementById("caseMinus");
+      cminusBtn.addEventListener("click",function(){
+         const casequanti = document.getElementById("caseAmount").value;
+         const casequantity = parseFloat(casequanti);
+         const totalCase = casequantity - 1;
+         document.getElementById("caseAmount").value = totalCase;
+         if(caseAmount.value <= 0){
+            caseAmount.value = 0;
+         }
+
+         const caseprice = document.getElementById("cPrice").innerText;
+         const casePrice = parseFloat(caseprice);
+         const totalCasePrice = casePrice - 59;
+         document.getElementById("cPrice").innerText = totalCasePrice;  
+         if(cPrice.innerText <= 0){
+            cPrice.innerText = 0;
+         }
+
+         const subTotal =  document.getElementById("subtotal").innerText;
+         const sbTotal = parseFloat(subTotal);
+         const SubTotal = sbTotal-59;
+         document.getElementById("subtotal").innerText = SubTotal;
+         if(subtotal.innerText <= 0 || caseAmount.value <= 0){
+            subtotal.innerText = mblPrice.innerText;
+         }
+
+         const Total =  document.getElementById("total").innerText;
+         const ToTal = parseFloat(Total);
+         const TotaL = ToTal-59;
+         document.getElementById("total").innerText = TotaL;
+         if(total.innerText <= 0 || caseAmount.value <= 0){
+            total.innerText = mblPrice.innerText;
+         } 
+      })
+   </script>
 
 </body>
 

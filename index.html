@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="phoneMinus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phoneCount" type="text" class="form-control text-center" value="1">
+                           <button id="phonePlus" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="phonePrice">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -59,14 +59,14 @@
 
                      <div class="col-md-8">
                         <h5>Subtotal: </h5>
-                        <h5>Tax:</h5>
+                        <h5>Tax(+5%):</h5>
                         <h5>Total:</h5>
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
-                        <h5>$0</h5>
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal">1278</span></h5>
+                        <h5>$ <span id="tax">63.9</span></h5>
+                        <h5>$ <span id="total">1341.9</span></h5>
                      </div>
                   </div>
                </div>
@@ -77,6 +77,51 @@
          </div>
       </div>
    </section>
-</body>
 
+   <!-- Javascript -->
+   <script>
+      function goodsCount(id, goodsQuantity) {
+         const goodsCount =  document.getElementById(id).value;
+         const numOfGoods = parseFloat(goodsCount);
+         const totalGoods = numOfGoods+goodsQuantity;
+         if(totalGoods < 0){
+            totalGoods = 0;
+         }
+         document.getElementById(id).value = totalGoods;
+      }
+      function goodsPrice(id, goodsPrice) {
+         const goodsPriceStr = document.getElementById(id).innerText;
+         const currentGoodsPrice = parseFloat(goodsPriceStr);
+         const totalPrice = currentGoodsPrice+goodsPrice;
+         document.getElementById(id).innerText = totalPrice;
+      }
+      
+      function totalCalculation(price) {
+         const subtotalStr = document.getElementById('subtotal').innerText;
+         const currentSubtotal = parseFloat(subtotalStr);
+         const subtotal = currentSubtotal+price;
+         document.getElementById('subtotal').innerText = subtotal;
+         const tax = subtotal*0.05;
+         document.getElementById('tax').innerText = tax.toFixed(1);
+         const total = subtotal*1.05;
+         document.getElementById('total').innerText = total.toFixed(1);
+      }
+
+      document.getElementById('phonePlus').addEventListener('click',function(){
+         const phoneQuantity = 1;
+         goodsCount('phoneCount', phoneQuantity);
+         const phonePrice = 1219;
+         goodsPrice('phonePrice',phonePrice)
+         totalCalculation(phonePrice);
+      })
+      
+      document.getElementById('phoneMinus').addEventListener('click',function(){
+         const phoneQuantity = -1;
+         goodsCount('phoneCount',phoneQuantity);
+         const phonePrice = -1219;
+         goodsPrice('phonePrice',phonePrice)
+         totalCalculation(phonePrice);
+      })
+   </script>
+</body>
 </html>
